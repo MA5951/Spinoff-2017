@@ -8,4 +8,11 @@ package org.usfirst.frc.team5951.robot;
  */
 public class RobotMap {
 	
+	public static final int DRIVER_STICK_PORT = 0;
+	public static final int OPERATOR_STICK_PORT = 1;
+	
+	public static final int FLYWHEEL_TALON = 1;
+	
+	public static final int LED_RELAY = 1;
+	
 }
