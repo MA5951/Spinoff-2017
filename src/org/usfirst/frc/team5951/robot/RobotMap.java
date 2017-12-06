@@ -7,5 +7,9 @@ package org.usfirst.frc.team5951.robot;
  * floating around.
  */
 public class RobotMap {
-	
+	//Lift Ports
+	public static final int LIFT_MOTOR = 0;
+	public static final int LIFT_ENCODER_A = 1;
+	public static final int LIFT_ENCODER_B = 2;
+	public static final int LIFT_LIMITED_SWITCH_PORT = 0;
 }

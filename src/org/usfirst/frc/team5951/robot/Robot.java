@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team5951.robot;
 
+import org.usfirst.frc.team5951.robot.subsystems.Lift;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -15,6 +17,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static final Lift LIFT = new Lift();
+	
 
 
 	/**
@@ -24,6 +28,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		
+		
+		
 	}
 
 	/**
@@ -62,6 +69,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	@Override
@@ -74,6 +82,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**
