@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team5951.robot;
 
+import org.usfirst.frc.team5951.robot.subsystems.Flywheel;
+import org.usfirst.frc.team5951.robot.subsystems.LEDs;
 import org.usfirst.frc.team5951.robot.subsystems.Lift;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -15,6 +17,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	public static final Flywheel FLYWHEEL = new Flywheel();
+	public static final LEDs LEDS = new LEDs();
 
 	public static OI oi;
 	public static final Lift LIFT = new Lift();
