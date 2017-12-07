@@ -26,7 +26,7 @@ public class Flywheel extends Subsystem {
 	public static final int ENCODER_DPP = 500;
 
 	public static final double SHOOTING_VELOCITY = 200;
-	public static final double STOPPED_VELOCITY  = 0;
+	public static final double STOPPED_VELOCITY = 0;
 
 	/**
 	 * Flyhweel constructor
