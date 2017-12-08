@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
  /**
   * 
   * @author Omer Libai
-  *	Outtakes the gears until the limit-switch isn't pressed.
+  *	Releases the gears until the limit-switch isn't pressed.
   */
 public class OuttakeGears extends Command {
 	private GearsIntake gearsIntake;
 
 	public OuttakeGears() {
-		gearsIntake = Robot.gearsIntake;
+		gearsIntake = Robot.GEARS_INSTAKE;
 		requires(gearsIntake);
 	}
 

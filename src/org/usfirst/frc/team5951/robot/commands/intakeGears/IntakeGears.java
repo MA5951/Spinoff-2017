@@ -15,7 +15,7 @@ public class IntakeGears extends Command {
 	private GearsIntake gearsIntake;
 
 	public IntakeGears() {
-		gearsIntake = Robot.gearsIntake;
+		gearsIntake = Robot.GEARS_INSTAKE;
 		requires(gearsIntake);
 	}
 

@@ -15,7 +15,7 @@ public class GearInside extends Trigger {
 	 * 
 	 */
 	public boolean get() {
-		return Robot.gearsIntake.isLimitActive();
+		return Robot.GEARS_INSTAKE.isLimitActive();
 	}
 
 }
