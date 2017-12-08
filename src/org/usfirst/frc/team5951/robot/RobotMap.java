@@ -5,8 +5,11 @@ package org.usfirst.frc.team5951.robot;
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
+ * 
+ * TODO Find real ports
  */
 public class RobotMap {
+
 	//Lift Ports
 	public static final int LIFT_MOTOR = 0;
 	public static final int LIFT_ENCODER_A = 1;
@@ -25,6 +28,8 @@ public class RobotMap {
 	
 	public static final int FLYWHEEL_TALON = 5;
 	
+	public static final int GEARS_INTAKE_TALON = 400;
+	
 	//Pneumatics
 	//General
 	public static final int PCM = 0;
@@ -38,7 +43,13 @@ public class RobotMap {
 	public static final int CHASSIS_ENCODER_LEFT_B = 2;
 	public static final int CHASSIS_ENCODER_RIGHT_A = 3;
 	public static final int CHASSIS_ENCODER_RIGHT_B = 4;
+
+	//Limit switches
+	public static final int GEARS_INTAKE_LIMIT_SWITCH = 400;
 	
 	//LEDs
 	public static final int LED_RELAY = 1;
+
+
+
 }
