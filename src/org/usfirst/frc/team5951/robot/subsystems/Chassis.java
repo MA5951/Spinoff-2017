@@ -77,7 +77,7 @@ public class Chassis extends Subsystem {
     	this.rightEncoder = new Encoder(RobotMap.CHASSIS_ENCODER_RIGHT_A,
     									RobotMap.CHASSIS_ENCODER_RIGHT_B);
     	
-    	//NavX initialze
+    	//NavX initialize
     	this.navX = new AHRS(Port.kMXP);
     }
     
