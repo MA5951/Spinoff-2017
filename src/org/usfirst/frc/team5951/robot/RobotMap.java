@@ -25,6 +25,7 @@ public class RobotMap {
 	
 	public static final int FLYWHEEL_TALON = 5;
 	
+<<<<<<< HEAD
 	//Pneumatics
 	//General
 	public static final int PCM = 0;
@@ -40,5 +41,7 @@ public class RobotMap {
 	public static final int CHASSIS_ENCODER_RIGHT_B = 4;
 	
 	//LEDs
+=======
+>>>>>>> 0b9abc1bac786dbceffcecfbef0f604ef83ad05c
 	public static final int LED_RELAY = 1;
 }

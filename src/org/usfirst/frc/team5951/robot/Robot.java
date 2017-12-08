@@ -25,6 +25,8 @@ public class Robot extends IterativeRobot {
 	public static final Lift LIFT = new Lift();
 
 	public static OI oi;
+	public static final Lift LIFT = new Lift();
+	
 
 
 	/**
@@ -34,6 +36,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		
+		
+		
 	}
 
 	/**
@@ -72,6 +77,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	@Override
@@ -84,6 +90,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**
