@@ -4,6 +4,7 @@ package org.usfirst.frc.team5951.robot;
 import org.usfirst.frc.team5951.robot.subsystems.Chassis;
 import org.usfirst.frc.team5951.robot.subsystems.Flywheel;
 import org.usfirst.frc.team5951.robot.subsystems.LEDs;
+import org.usfirst.frc.team5951.robot.subsystems.Lift;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,6 +22,7 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel FLYWHEEL = new Flywheel();
 	public static final Chassis CHASSIS = new Chassis();
 	public static final LEDs LEDS = new LEDs();
+	public static final Lift LIFT = new Lift();
 
 	public static OI oi;
 

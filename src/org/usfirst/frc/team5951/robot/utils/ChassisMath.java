@@ -51,20 +51,21 @@ public class ChassisMath {
 	}
 	
 	/**
-	 * TODO fix math
 	 * @param moveValue
 	 * @param rotateValue
 	 * @param deadzone
-	 * @return
+	 * @return Power to each side of the chassis
 	 */
 	public static double[] calculatePowerDZ(double moveValue, double rotateValue, double deadzone) {
 		double output[] = new double[2];
-		double deadzoneMultiplier = 1.0 / (1 - deadzone);
 		
-		if(moveValue < deadzone) moveValue = 0.0;
-		else moveValue = (moveValue - deadzone) * deadzoneMultiplier;
-		if(rotateValue < deadzone) rotateValue = 0.0;
-		else rotateValue = (rotateValue - deadzone) * deadzoneMultiplier;
+		if(Math.abs(moveValue) < deadzone) moveValue = 0;
+		else if (moveValue > 0) moveValue = (moveValue - deadzone) / (1.0 - deadzone);
+		else moveValue = (moveValue - deadzone) / (1.0 - deadzone) * -1;
+		
+		if(Math.abs(rotateValue) < deadzone) rotateValue = 0;
+		else if (rotateValue > 0) rotateValue = (rotateValue - deadzone) / (1.0 - deadzone);
+		else rotateValue = (rotateValue - deadzone) / (1.0 - deadzone) * -1;
 		
 		if (moveValue > 1)
 			moveValue = 1;

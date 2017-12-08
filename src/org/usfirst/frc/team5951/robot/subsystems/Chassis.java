@@ -10,7 +10,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -79,7 +78,7 @@ public class Chassis extends Subsystem {
     									RobotMap.CHASSIS_ENCODER_RIGHT_B);
     	
     	//NavX initialze
-    	this.navX = new AHRS(Port.kMXP);    	
+    	this.navX = new AHRS(Port.kMXP);
     }
     
     /**
@@ -101,6 +100,7 @@ public class Chassis extends Subsystem {
     }
     
     /**
+     * TODO Test
      * Arcade drive using the given (x,y) coordinates
      * Has a dead-zone that keeps the chassis in place when the joystick values are 
      * less than {@code joystickDeadZone} 
@@ -128,12 +128,16 @@ public class Chassis extends Subsystem {
     	return this.rightEncoder.getDistance();
     }
     
+    public double getAverageEncoderDistance() {
+    	return (this.rightEncoder.getDistance() + 
+    			this.leftEncoder.getDistance()) / 2.0;
+    }
     
     /**
      * Returns the robot's heading
      */
     public double getRobotAngle() {
-    	return this.navX.getRawMagX();
+    	return this.navX.getAngle();
     }
     
     /**
