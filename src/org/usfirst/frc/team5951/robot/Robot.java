@@ -25,7 +25,6 @@ public class Robot extends IterativeRobot {
 	public static final Lift LIFT = new Lift();
 
 	public static OI oi;
-	public static final Lift LIFT = new Lift();
 	
 
 
