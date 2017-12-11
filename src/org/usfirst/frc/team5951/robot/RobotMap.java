@@ -11,7 +11,7 @@ package org.usfirst.frc.team5951.robot;
 public class RobotMap {
 
 	//Lift Ports
-	public static final int LIFT_MOTOR = 0;
+	public static final int LIFT_MOTOR = 7;
 	public static final int LIFT_ENCODER_A = 1;
 	public static final int LIFT_ENCODER_B = 2;
 	public static final int LIFT_LIMITED_SWITCH_PORT = 0;
@@ -21,14 +21,14 @@ public class RobotMap {
 	public static final int OPERATOR_STICK_PORT = 1;
 
 	//Motor controllers
-	public static final int CHASSIS_TALON_LEFT_FRONT = 1;
-	public static final int CHASSIS_TALON_LEFT_REAR = 2;
+	public static final int CHASSIS_TALON_LEFT_FRONT = 5;
+	public static final int CHASSIS_TALON_LEFT_REAR = 6;
 	public static final int CHASSIS_TALON_RIGHT_FRONT = 3;
 	public static final int CHASSIS_TALON_RIGHT_REAR = 4;
 	
-	public static final int FLYWHEEL_TALON = 5;
+	public static final int FLYWHEEL_TALON = 8;
 	
-	public static final int GEARS_INTAKE_TALON = 400;
+	public static final int GEARS_INTAKE_TALON = 1;
 	
 	//Pneumatics
 	//General

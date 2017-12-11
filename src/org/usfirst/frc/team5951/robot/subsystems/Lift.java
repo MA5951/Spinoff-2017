@@ -26,18 +26,18 @@ public class Lift extends Subsystem {
 	private DigitalInput limitSwitch;
 
 	// Sets down, dynamic and static position
-	public static final double DOWN_POSITION = 0;
-	public static final double DYNAMIC_POSITION = 20;
+	public static final double DOWN_POSITION = -20;
+	public static final double DYNAMIC_POSITION = 10;
 	public static final double STATIC_POSITION = 70;
 	public static final double RELEASE_DISTANCE = 10;
 	
 	//Speeds
-	public static final double DOWN_SPEED = -1;
+	public static final double DOWN_SPEED = -0.7;
 
 	// Sets the number of pulses in 360 degrees
-	public static final int DISTANCE_PER_PULSE = 500;
+	public static final int LIFT_CPR = 1;
 
-	// Sets the proprotinal, integral and derivative for the PID
+	// Sets the proportional, integral and derivative for the PID
 	public static final double LIFT_P = 0.5;
 	public static final double LIFT_I = 0;
 	public static final double LIFT_D = 0;
@@ -49,24 +49,31 @@ public class Lift extends Subsystem {
 		liftMotor.changeControlMode(TalonControlMode.Position);
 		liftMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		liftMotor.setPID(LIFT_P, LIFT_I, LIFT_D);
-		liftMotor.setPulseWidthPosition(DISTANCE_PER_PULSE);
+		liftMotor.configEncoderCodesPerRev(LIFT_CPR);
+		liftMotor.enableBrakeMode(true);
 
 		limitSwitch = new DigitalInput(RobotMap.LIFT_LIMITED_SWITCH_PORT);
 	}
 
 	// downPosition method brings the lift to the bottom
 	public void downPosition() {
+		liftMotor.changeControlMode(TalonControlMode.Position);
 		liftMotor.set(DOWN_POSITION);
+		liftMotor.enable();
 	}
 
 	// dynamicPosition method brings the lift to the dynamic peg
 	public void dynamicPosition() {
+		liftMotor.changeControlMode(TalonControlMode.Position);
 		liftMotor.set(DYNAMIC_POSITION);
+		liftMotor.enable();
 	}
 
 	// staticPosition method brings the lift to the static peg
 	public void staticPosition() {
+		liftMotor.changeControlMode(TalonControlMode.Position);
 		liftMotor.set(STATIC_POSITION);
+		liftMotor.enable();
 	}
 
 	// Resets the encoder when the micro switch is bumped
@@ -75,6 +82,8 @@ public class Lift extends Subsystem {
 	}
 	
 	public void downToReset() {
+		liftMotor.disable();
+		liftMotor.changeControlMode(TalonControlMode.PercentVbus);
 		liftMotor.set(DOWN_SPEED);
 	}
 	

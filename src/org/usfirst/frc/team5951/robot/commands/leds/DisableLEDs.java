@@ -14,6 +14,7 @@ public class DisableLEDs extends InstantCommand {
 	
     public DisableLEDs() {
         this.leds = Robot.LEDS;
+        requires(this.leds);
     }
 
     // Called once when the command executes

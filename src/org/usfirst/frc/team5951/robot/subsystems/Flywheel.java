@@ -23,7 +23,7 @@ public class Flywheel extends Subsystem {
 	public static final double FLYWHEEL_D = 0.5;
 	public static final double FLYWHEEL_F = 0.5;
 
-	public static final int ENCODER_DPP = 500;
+	public static final int FLYWHEEL_CPR = 500; //Codes per revolution
 
 	public static final double SHOOTING_VELOCITY = 200;
 	public static final double STOPPED_VELOCITY = 0;
@@ -37,7 +37,7 @@ public class Flywheel extends Subsystem {
 		this.flywheelMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		this.flywheelMotor.setPID(FLYWHEEL_P, FLYWHEEL_I, FLYWHEEL_D);
 		this.flywheelMotor.setF(FLYWHEEL_F);
-		this.flywheelMotor.setPulseWidthPosition(ENCODER_DPP);
+		this.flywheelMotor.configEncoderCodesPerRev(FLYWHEEL_CPR);
 	}
 
 	/**
