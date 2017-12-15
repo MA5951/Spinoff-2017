@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5951.robot.subsystems;
 
 import org.usfirst.frc.team5951.robot.RobotMap;
+import org.usfirst.frc.team5951.robot.commands.chassis.ArcadeDrive;
 import org.usfirst.frc.team5951.robot.utils.ChassisMath;
 
 import com.ctre.CANTalon;
@@ -60,7 +61,7 @@ public class Chassis extends Subsystem {
     	
     	this.leftFrontMotor.setInverted(false);
     	this.leftRearMotor.reverseOutput(false);
-    	this.rightFrontMotor.setInverted(false);
+    	this.rightFrontMotor.setInverted(true);
     	this.rightRearMotor.reverseOutput(false);
     	
     	this.leftRearMotor.set(this.leftFrontMotor.getDeviceID());
@@ -112,6 +113,16 @@ public class Chassis extends Subsystem {
     	double[] output = ChassisMath.calculatePowerDZ(moveValue, rotateValue, joystickDeadZone);
     	this.rightFrontMotor.set(output[0]);
     	this.leftFrontMotor.set(output[1]);
+    }
+    
+    /**
+     * Tank drive using leftPower and rightPower
+     * @param rightPower - Power for the right side of the chassis (Between -1 and 1)
+     * @param leftPower - Power for the left side of the chassis (Between -1 and 1)
+     */
+    public void tankDrive(double rightPower, double leftPower) {
+    	this.rightFrontMotor.set(rightPower);
+    	this.leftFrontMotor.set(leftPower);
     }
     
     /**
@@ -178,7 +189,7 @@ public class Chassis extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        
+        setDefaultCommand(new ArcadeDrive());
     }
 }
 

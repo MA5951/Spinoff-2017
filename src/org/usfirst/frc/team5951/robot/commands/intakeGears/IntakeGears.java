@@ -27,7 +27,7 @@ public class IntakeGears extends Command {
 	}
 
 	protected boolean isFinished() {
-		return gearsIntake.isLimitActive(); //makes sure the command stops when the limit switch is pressed.
+		return false;
 	}
 
 	protected void end() {

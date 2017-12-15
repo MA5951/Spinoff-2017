@@ -28,7 +28,7 @@ public class OuttakeGears extends Command {
 
 	
 	protected boolean isFinished() {
-		return !gearsIntake.isLimitActive(); //keeps the command going while the limit-switch is pressed
+		return false;
 	}
 
 	protected void end() {

@@ -35,7 +35,7 @@ public class Lift extends Subsystem {
 	public static final double DOWN_SPEED = -0.7;
 
 	// Sets the number of pulses in 360 degrees
-	public static final int LIFT_CPR = 1;
+	public static final int LIFT_CPR = 1024;
 
 	// Sets the proportional, integral and derivative for the PID
 	public static final double LIFT_P = 0.5;
@@ -45,12 +45,11 @@ public class Lift extends Subsystem {
 	// The constructor of the subsystem
 	public Lift() {
 		// Sets the CANTalon
-		liftMotor = new CANTalon(RobotMap.LIFT_MOTOR);
-		liftMotor.changeControlMode(TalonControlMode.Position);
-		liftMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		liftMotor.setPID(LIFT_P, LIFT_I, LIFT_D);
-		liftMotor.configEncoderCodesPerRev(LIFT_CPR);
-		liftMotor.enableBrakeMode(true);
+		liftMotor = new CANTalon(RobotMap.LIFT_TALON);
+//		liftMotor.changeControlMode(TalonControlMode.Position);
+//		liftMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+//		liftMotor.setPID(LIFT_P, LIFT_I, LIFT_D);
+//		liftMotor.enableBrakeMode(true);
 
 		limitSwitch = new DigitalInput(RobotMap.LIFT_LIMITED_SWITCH_PORT);
 	}
@@ -58,21 +57,21 @@ public class Lift extends Subsystem {
 	// downPosition method brings the lift to the bottom
 	public void downPosition() {
 		liftMotor.changeControlMode(TalonControlMode.Position);
-		liftMotor.set(DOWN_POSITION);
+		liftMotor.set(DOWN_POSITION * LIFT_CPR);
 		liftMotor.enable();
 	}
 
 	// dynamicPosition method brings the lift to the dynamic peg
 	public void dynamicPosition() {
 		liftMotor.changeControlMode(TalonControlMode.Position);
-		liftMotor.set(DYNAMIC_POSITION);
+		liftMotor.set(DYNAMIC_POSITION * LIFT_CPR);
 		liftMotor.enable();
 	}
 
 	// staticPosition method brings the lift to the static peg
 	public void staticPosition() {
 		liftMotor.changeControlMode(TalonControlMode.Position);
-		liftMotor.set(STATIC_POSITION);
+		liftMotor.set(STATIC_POSITION * LIFT_CPR);
 		liftMotor.enable();
 	}
 
@@ -85,6 +84,19 @@ public class Lift extends Subsystem {
 		liftMotor.disable();
 		liftMotor.changeControlMode(TalonControlMode.PercentVbus);
 		liftMotor.set(DOWN_SPEED);
+	}
+	
+	public void raise(double power) {
+		this.liftMotor.set(power);
+	}
+	
+	public void lower(double power) {
+		this.liftMotor.set(power);
+	}
+	
+	public void stopLift() {
+		liftMotor.changeControlMode(TalonControlMode.PercentVbus);
+		liftMotor.set(0);
 	}
 	
 	public boolean isSwitchPressed() {

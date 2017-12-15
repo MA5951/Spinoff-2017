@@ -38,6 +38,7 @@ public class LiftEncoderReset extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	lift.encoderReset();
+    	lift.stopLift();
     }
 
     // Called when another command which requires one or more of the same

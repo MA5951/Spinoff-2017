@@ -2,11 +2,13 @@
 package org.usfirst.frc.team5951.robot;
 
 
+import org.usfirst.frc.team5951.robot.subsystems.BallShakers;
 import org.usfirst.frc.team5951.robot.subsystems.Chassis;
 import org.usfirst.frc.team5951.robot.subsystems.Flywheel;
 import org.usfirst.frc.team5951.robot.subsystems.GearsIntake;
 import org.usfirst.frc.team5951.robot.subsystems.LEDs;
 import org.usfirst.frc.team5951.robot.subsystems.Lift;
+import org.usfirst.frc.team5951.robot.subsystems.Queue;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -26,6 +28,8 @@ public class Robot extends IterativeRobot {
 	public static final LEDs LEDS = new LEDs();
 	public static final Lift LIFT = new Lift();
 	public static final GearsIntake GEARS_INSTAKE = new GearsIntake();
+	public static final BallShakers BALL_SHAKERS = new BallShakers();
+	public static final Queue QUEUE = new Queue();
 	
 	public static OI oi;
 

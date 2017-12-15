@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearsIntake extends Subsystem {
 
 	private CANTalon intakeMotor;
-	private DigitalInput limitSwitch;
 
 	public static final int MAX_TALON_POWER = 1;
 	public static final int MIN_TALON_POWER = -1;
@@ -30,17 +29,8 @@ public class GearsIntake extends Subsystem {
 		intakeMotor = new CANTalon(RobotMap.GEARS_INTAKE_TALON);
 		intakeMotor.changeControlMode(TalonControlMode.PercentVbus);
 
-		// init the limit-switch
-		limitSwitch = new DigitalInput(RobotMap.GEARS_INTAKE_LIMIT_SWITCH);
 	}
 
-	/**
-	 * 
-	 * @return the current limit-switch value
-	 */
-	public boolean isLimitActive() {
-		return limitSwitch.get();
-	}
 
 	/**
 	 * Sets the CANTalon value forward. This function intakes the gears.
