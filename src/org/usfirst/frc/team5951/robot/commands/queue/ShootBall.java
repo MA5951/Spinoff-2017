@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class InsertBall extends Command {
+public class ShootBall extends Command {
 
 	private Queue queue;
 	
-    public InsertBall() {
+    public ShootBall() {
     	this.queue = Robot.QUEUE;
     	requires(queue);
     }

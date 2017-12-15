@@ -6,7 +6,7 @@ import org.usfirst.frc.team5951.robot.commands.intakeGears.IntakeGears;
 import org.usfirst.frc.team5951.robot.commands.intakeGears.OuttakeGears;
 import org.usfirst.frc.team5951.robot.commands.lift.LiftDownNP;
 import org.usfirst.frc.team5951.robot.commands.lift.LiftUpNP;
-import org.usfirst.frc.team5951.robot.commands.queue.InsertBall;
+import org.usfirst.frc.team5951.robot.commands.queue.ShootBall;
 import org.usfirst.frc.team5951.robot.commands.queue.RemoveBall;
 import org.usfirst.frc.team5951.robot.triggers.OperatorPOVDown;
 import org.usfirst.frc.team5951.robot.triggers.OperatorPOVUp;
@@ -86,7 +86,7 @@ public class OI {
 		RAISE_LIFT.whileActive(new LiftUpNP());
 		LOWER_LIFT.whileActive(new LiftDownNP());
 		
-		INSERT_BALL.whileHeld(new InsertBall());
+		INSERT_BALL.whileHeld(new ShootBall());
 		REMOVE_BALL.whileHeld(new RemoveBall());
 	}
 }

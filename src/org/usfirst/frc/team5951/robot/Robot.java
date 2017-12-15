@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5951.robot;
 
 
+import org.usfirst.frc.team5951.robot.autonomous.DriveTest;
 import org.usfirst.frc.team5951.robot.subsystems.BallShakers;
 import org.usfirst.frc.team5951.robot.subsystems.Chassis;
 import org.usfirst.frc.team5951.robot.subsystems.Flywheel;
@@ -11,8 +12,11 @@ import org.usfirst.frc.team5951.robot.subsystems.Lift;
 import org.usfirst.frc.team5951.robot.subsystems.Queue;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +37,9 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 
+	//autonomous
+	public SendableChooser<CommandGroup> autoChooser;
+	public CommandGroup autoCommand;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -40,6 +47,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		
+		//autonomous
+		autoChooser = new SendableChooser<>();
+		autoChooser.addDefault("drive test", new DriveTest());
+		//autoChooser.addObject(name, object);
+		SmartDashboard.putData("Autonomous chooser: ", autoChooser);
 	}
 
 	/**
@@ -70,6 +83,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		autoCommand = (CommandGroup) autoChooser.getSelected();
+		// TODO: CHASSIS.setChassisMultiplyer(1);
+		if (autoCommand != null)
+			autoCommand.start();
 	}
 
 	/**
