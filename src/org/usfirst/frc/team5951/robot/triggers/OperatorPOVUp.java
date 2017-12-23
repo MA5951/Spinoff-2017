@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 public class OperatorPOVUp extends Trigger {
 
     public boolean get() {
-        return OI.OPERATOR_STICK.getPOV() > 90 &&
-        	   OI.OPERATOR_STICK.getPOV() < 270;
+        return (OI.OPERATOR_STICK.getPOV() > 270 || 
+        	    OI.OPERATOR_STICK.getPOV() < 90) &&
+        		OI.OPERATOR_STICK.getPOV() != -1;
     }
 }

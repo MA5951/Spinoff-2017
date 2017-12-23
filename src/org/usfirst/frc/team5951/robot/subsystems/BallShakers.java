@@ -18,19 +18,28 @@ public class BallShakers extends Subsystem {
     	this.rightServo = new Servo(RobotMap.RIGHT_SERVO_PORT);
     }
     
-    public void shakeDown() {
-    	this.leftServo.set(0);
+    public void shakeDownLeft() {
+    	this.leftServo.set(1);
+    }
+    
+    public void shakeDownRight() {
     	this.rightServo.set(0);
     }
     
-    public void shakeUp() {
-    	this.leftServo.set(1);
+    public void shakeUpLeft() {
+    	this.leftServo.set(0);
+    }
+    
+    public void shakeUpRight(){
     	this.rightServo.set(1);
     }
-
-    public void stopShakers() {
-    	this.leftServo.set(0.5);
+    
+    public void stopRightServo() {
     	this.rightServo.set(0.5);
+    }
+    
+    public void stopLeftServo() {
+    	this.leftServo.set(0.5);
     }
     
     public void initDefaultCommand() {

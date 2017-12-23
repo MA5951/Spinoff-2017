@@ -30,20 +30,21 @@ public class Chassis extends Subsystem {
     
     //Sensors
     //Encoders
-    private Encoder leftEncoder,
-    				rightEncoder;
+    private Encoder rightEncoder;
 
     //NavX-MXP
     private AHRS navX;
     
     //Global variables
-    public static final double DRIVE_KP = 0.5;
+    public static final double DRIVE_KP = 4.3;
     public static final double DRIVE_KI = 0;
     public static final double DRIVE_KD = 0;
 
-    public static final double ROTATE_KP = 0.5;
+    public static final double ROTATE_KP = 0.04;
     public static final double ROTATE_KI = 0;
     public static final double ROTATE_KD = 0;
+    
+    public static final double CHASSIS_DPP = 1.0 / 1090.0;
     
     public static final double joystickDeadZone = 0.05;
     
@@ -73,10 +74,10 @@ public class Chassis extends Subsystem {
     									   RobotMap.SHIFTERS_CLOSED);
     	
     	//Encoders initialize
-    	this.leftEncoder = new Encoder(RobotMap.CHASSIS_ENCODER_LEFT_A,
-    								   RobotMap.CHASSIS_ENCODER_LEFT_B);
     	this.rightEncoder = new Encoder(RobotMap.CHASSIS_ENCODER_RIGHT_A,
     									RobotMap.CHASSIS_ENCODER_RIGHT_B);
+    	this.rightEncoder.setDistancePerPulse(CHASSIS_DPP);
+    	this.rightEncoder.setReverseDirection(true);
     	
     	//NavX initialize
     	this.navX = new AHRS(Port.kMXP);
@@ -125,12 +126,6 @@ public class Chassis extends Subsystem {
     	this.leftFrontMotor.set(leftPower);
     }
     
-    /**
-     * Returns the left encoder value
-     */
-    public double getLeftEncoderDistance() {
-    	return this.leftEncoder.getDistance();
-    }
 
     /**
      * Returns the right encoder value
@@ -138,12 +133,7 @@ public class Chassis extends Subsystem {
     public double getRightEncoderDistance() {
     	return this.rightEncoder.getDistance();
     }
-    
-    public double getAverageEncoderDistance() {
-    	return (this.rightEncoder.getDistance() + 
-    			this.leftEncoder.getDistance()) / 2.0;
-    }
-    
+        
     /**
      * Returns the robot's heading
      */
@@ -183,11 +173,19 @@ public class Chassis extends Subsystem {
     /**
      * Resets the encoders
      */
-    public void resetEncoders() {
-    	this.leftEncoder.reset();
+    public void resetEncoder() {
     	this.rightEncoder.reset();
     }
     
+    /**
+     * spins the robot left.
+     */
+    public void spinLeft() {
+    	this.leftFrontMotor.set(-1);
+    	this.leftRearMotor.set(-1);
+    	this.rightFrontMotor.set(1);
+    	this.rightRearMotor.set(1);
+    }
     public void initDefaultCommand() {
         setDefaultCommand(new ArcadeDrive());
     }

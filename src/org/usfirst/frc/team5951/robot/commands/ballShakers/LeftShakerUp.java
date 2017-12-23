@@ -1,46 +1,43 @@
-package org.usfirst.frc.team5951.robot.commands.chassis;
+package org.usfirst.frc.team5951.robot.commands.ballShakers;
 
-import org.usfirst.frc.team5951.robot.OI;
 import org.usfirst.frc.team5951.robot.Robot;
-import org.usfirst.frc.team5951.robot.subsystems.Chassis;
+import org.usfirst.frc.team5951.robot.subsystems.BallShakers;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TankDrive extends Command {
+public class LeftShakerUp extends Command {
 
-	private Chassis chassis;
+	private BallShakers ballShakers;
 	
-    public TankDrive() {
-        chassis = Robot.CHASSIS;
-        requires(chassis);
+    public LeftShakerUp() {
+    	this.ballShakers = Robot.BALL_SHAKERS;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	chassis.stopChassis();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	chassis.tankDrive(OI.DRIVER_TANK_RIGHT.getY(), 
-    					  OI.DRIVER_TANK_LEFT.getY());
+    	this.ballShakers.shakeUpLeft();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	chassis.stopChassis();
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	this.ballShakers.stopLeftServo();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

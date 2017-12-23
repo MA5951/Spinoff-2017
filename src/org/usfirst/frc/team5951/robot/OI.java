@@ -1,15 +1,25 @@
 package org.usfirst.frc.team5951.robot;
 
-import org.usfirst.frc.team5951.robot.commands.ballShakers.Shake;
+import org.usfirst.frc.team5951.robot.commands.ballShakers.ShakeLeft;
+import org.usfirst.frc.team5951.robot.commands.ballShakers.ShakeRight;
 import org.usfirst.frc.team5951.robot.commands.chassis.ToggleShifters;
+import org.usfirst.frc.team5951.robot.commands.flywheel.RollUp;
 import org.usfirst.frc.team5951.robot.commands.intakeGears.IntakeGears;
 import org.usfirst.frc.team5951.robot.commands.intakeGears.OuttakeGears;
 import org.usfirst.frc.team5951.robot.commands.lift.LiftDownNP;
+import org.usfirst.frc.team5951.robot.commands.lift.LiftDownPosition;
+import org.usfirst.frc.team5951.robot.commands.lift.LiftDynamicPosition;
+import org.usfirst.frc.team5951.robot.commands.lift.LiftEmergencyStopPID;
+import org.usfirst.frc.team5951.robot.commands.lift.LiftEncoderReset;
+import org.usfirst.frc.team5951.robot.commands.lift.LiftStaticPosition;
 import org.usfirst.frc.team5951.robot.commands.lift.LiftUpNP;
-import org.usfirst.frc.team5951.robot.commands.queue.ShootBall;
-import org.usfirst.frc.team5951.robot.commands.queue.RemoveBall;
+import org.usfirst.frc.team5951.robot.commands.queue.InsertBall;
+import org.usfirst.frc.team5951.robot.commands.queue.InsertBallSeries;
+import org.usfirst.frc.team5951.robot.triggers.LeftPOVHeld;
+import org.usfirst.frc.team5951.robot.triggers.OperatorLeftTriggerPressed;
 import org.usfirst.frc.team5951.robot.triggers.OperatorPOVDown;
 import org.usfirst.frc.team5951.robot.triggers.OperatorPOVUp;
+import org.usfirst.frc.team5951.robot.triggers.OperatorRightTriggerPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -27,66 +37,66 @@ public class OI {
 	public static final XboxController OPERATOR_STICK =
 			new XboxController(RobotMap.OPERATOR_STICK_PORT);
 	
-	public static final Joystick DRIVER_TANK_LEFT = 
-			new Joystick(RobotMap.DRIVER_TANK_LEFT_PORT);
-	
-	public static final Joystick DRIVER_TANK_RIGHT = 
-			new Joystick(RobotMap.DRIVER_TANK_RIGHT_PORT);
-	
 	//Buttons
-//	public static final JoystickButton COMMENCE_SHOOT_SEQUENCE = 
-//			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.LB);
-//	
-//	public static final JoystickButton LIFT_ENCODER_RESET = 
-//			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.START);
-//	
-//	public static final JoystickButton LIFT_INTAKE_POS = 
-//			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.A);
-//	
-//	public static final JoystickButton LIFT_LOW_PEG =
-//			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.B);
-//	
-//	public static final JoystickButton LIFT_HIGH_PEG = 
-//			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.Y);
-	
-	public static final JoystickButton SHAKE_RIGHT = 
-			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.LB);
-	
-	public static final JoystickButton TOGGLE_SHIFTERS = 
+	//Driver
+	public static final JoystickButton SHIFT_GEARS = 
 			new JoystickButton(DRIVER_STICK, JoystickUtil.JOYSTICK.TRIGGER);
 	
-	public static final JoystickButton INSERT_GEARS = 
-			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.X);
+	//Operator
+	public static final JoystickButton RESET_LIFT_ENCODER = 
+			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.START);
 	
-	public static final JoystickButton INSERT_BALL = 
+	public static final JoystickButton LIFT_FLOOR_POS = 
 			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.A);
 	
-	public static final JoystickButton REMOVE_BALL = 
-			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.Y);
-	
-	public static final OperatorPOVUp RAISE_LIFT = 
-			new OperatorPOVUp();
-	
-	public static final OperatorPOVDown LOWER_LIFT = 
-			new OperatorPOVDown();
-
-	public static final JoystickButton REMOVE_GEARS = 
+	public static final JoystickButton LIFT_DYNAMIC_POS = 
 			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.B);
 	
+	public static final JoystickButton LIFT_STATIC_POS = 
+			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.Y);
 	
+	public static final JoystickButton ROLL_UP =
+			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.X);
 	
+	public static final JoystickButton SHAKER_LEFT = 
+			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.LB);
+	
+	public static final JoystickButton SHAKER_RIGHT =
+			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.RB);
+	
+	public static final OperatorPOVDown LIFT_LOWER =
+			new OperatorPOVDown();
+	
+	public static final OperatorPOVUp LIFT_RAISE =
+			new OperatorPOVUp();
+	
+	public static final OperatorLeftTriggerPressed RELEASE_GEAR = 
+			new OperatorLeftTriggerPressed();
+	
+	public static final OperatorRightTriggerPressed INSERT_GEAR = 
+			new OperatorRightTriggerPressed();
+	
+	public static final LeftPOVHeld INSERT_BALLS =
+			new LeftPOVHeld();
+
+	public static final JoystickButton EMERGENCY_LIFT =
+			new JoystickButton(OPERATOR_STICK, JoystickUtil.XBOX.BACK);
 	public OI() {
-		//Driver
-		TOGGLE_SHIFTERS.whenPressed(new ToggleShifters());
-		SHAKE_RIGHT.whenPressed(new Shake());
+		SHIFT_GEARS.whenPressed(new ToggleShifters());
+		RESET_LIFT_ENCODER.whenPressed(new LiftEncoderReset());
+		LIFT_FLOOR_POS.whenPressed(new LiftDownPosition());
+		LIFT_DYNAMIC_POS.whenPressed(new LiftDynamicPosition());
+		LIFT_STATIC_POS.whenPressed(new LiftStaticPosition());
+		ROLL_UP.toggleWhenPressed(new RollUp());
+		SHAKER_LEFT.whenPressed(new ShakeLeft());
+		SHAKER_RIGHT.whenPressed(new ShakeRight());
+		RELEASE_GEAR.whileActive(new OuttakeGears());
+		INSERT_GEAR.whileActive(new IntakeGears());
 		
-		INSERT_GEARS.toggleWhenPressed(new IntakeGears());
-		REMOVE_GEARS.toggleWhenPressed(new OuttakeGears());
 		
-		RAISE_LIFT.whileActive(new LiftUpNP());
-		LOWER_LIFT.whileActive(new LiftDownNP());
-		
-		INSERT_BALL.whileHeld(new ShootBall());
-		REMOVE_BALL.whileHeld(new RemoveBall());
+		LIFT_LOWER.whileActive(new LiftDownNP());
+		LIFT_RAISE.whileActive(new LiftUpNP());
+		INSERT_BALLS.toggleWhenActive(new InsertBallSeries());
+		EMERGENCY_LIFT.whenActive(new LiftEmergencyStopPID());
 	}
 }

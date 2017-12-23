@@ -4,6 +4,7 @@ import org.usfirst.frc.team5951.robot.Robot;
 import org.usfirst.frc.team5951.robot.subsystems.Chassis;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,6 +30,7 @@ public class RotateToAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		this.chassis.arcadeDrive(0, getAngleError() * Chassis.ROTATE_KP);
+		SmartDashboard.putNumber("Robot angle: ", this.chassis.getRobotAngle());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -52,7 +54,7 @@ public class RotateToAngle extends Command {
 	 * @return
 	 */
 	private boolean isInTolerance() {
-		return Math.abs(this.getAngleError()) > 2;
+		return Math.abs(this.getAngleError()) < 2;
 	}
 	
 	/**

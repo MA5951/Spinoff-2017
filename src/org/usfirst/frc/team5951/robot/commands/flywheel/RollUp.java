@@ -25,7 +25,7 @@ public class RollUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("Motor speed: ", this.flywheel.getError());
+    	SmartDashboard.putNumber("Motor speed: ", this.flywheel.getSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

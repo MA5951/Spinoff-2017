@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5951.robot.autonomous;
+package org.usfirst.frc.team5951.robot.commands.auton;
 
 import org.usfirst.frc.team5951.robot.commands.chassis.DriveStraight;
 

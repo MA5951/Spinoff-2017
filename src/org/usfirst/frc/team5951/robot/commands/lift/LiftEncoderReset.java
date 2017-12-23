@@ -18,7 +18,7 @@ public class LiftEncoderReset extends Command {
     	lift = Robot.LIFT;
     	//using lift object
         requires(lift);
-        this.setInterruptible(false);
+        setInterruptible(true);
     }
 
     // Called just before this Command runs the first time
@@ -44,6 +44,6 @@ public class LiftEncoderReset extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	
+    	end();
     }
 }

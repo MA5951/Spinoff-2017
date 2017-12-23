@@ -2,7 +2,12 @@
 package org.usfirst.frc.team5951.robot;
 
 
-import org.usfirst.frc.team5951.robot.autonomous.DriveTest;
+import org.usfirst.frc.team5951.robot.commands.auton.BlueGearsLeft;
+import org.usfirst.frc.team5951.robot.commands.auton.BlueGearsRight;
+import org.usfirst.frc.team5951.robot.commands.auton.BoilerAutonomous;
+import org.usfirst.frc.team5951.robot.commands.auton.PassAutoLine;
+import org.usfirst.frc.team5951.robot.commands.auton.RedGearsLeft;
+import org.usfirst.frc.team5951.robot.commands.auton.RedGearsRight;
 import org.usfirst.frc.team5951.robot.subsystems.BallShakers;
 import org.usfirst.frc.team5951.robot.subsystems.Chassis;
 import org.usfirst.frc.team5951.robot.subsystems.Flywheel;
@@ -11,6 +16,7 @@ import org.usfirst.frc.team5951.robot.subsystems.LEDs;
 import org.usfirst.frc.team5951.robot.subsystems.Lift;
 import org.usfirst.frc.team5951.robot.subsystems.Queue;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -50,9 +56,14 @@ public class Robot extends IterativeRobot {
 		
 		//autonomous
 		autoChooser = new SendableChooser<>();
-		autoChooser.addDefault("drive test", new DriveTest());
-		//autoChooser.addObject(name, object);
+		autoChooser.addDefault("Blue Alliance, Right", new BlueGearsRight());
+		autoChooser.addObject("Blue Alliance, Left", new BlueGearsLeft());
+		autoChooser.addDefault("Red Alliance, Right", new RedGearsRight());
+		autoChooser.addObject("Red Alliance, Left", new RedGearsLeft());
+		autoChooser.addObject("Boiler Autonomous", new BoilerAutonomous());
+		autoChooser.addObject("pass auto line", new PassAutoLine());
 		SmartDashboard.putData("Autonomous chooser: ", autoChooser);
+		CameraServer.getInstance().startAutomaticCapture().setResolution(40, 30);
 	}
 
 	/**
@@ -83,6 +94,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		CHASSIS.resetGyro();
 		autoCommand = (CommandGroup) autoChooser.getSelected();
 		// TODO: CHASSIS.setChassisMultiplyer(1);
 		if (autoCommand != null)
@@ -100,6 +112,9 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		if(autoCommand != null){
+			autoCommand.cancel();
+		}
 	}
 
 	/**

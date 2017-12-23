@@ -16,8 +16,8 @@ public class Queue extends Subsystem {
 	
 	private DigitalInput limitSwitch;
 	
-	public static final double INSERT_SPEED = 0.8;
-	public static final double REMOVE_SPEED = -0.8;
+	public static final double INSERT_SPEED = 0.5;
+	public static final double REMOVE_SPEED = -0.5;
 	
 	public Queue() {
 		this.queueMotor = new CANTalon(RobotMap.QUEUE_TALON);

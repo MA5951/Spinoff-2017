@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5951.robot;
 
-import edu.wpi.first.wpilibj.Servo;
-
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -30,7 +28,7 @@ public class RobotMap {
 	
 	
 	//Servos
-	public static final int LEFT_SERVO_PORT = 2;
+	public static final int LEFT_SERVO_PORT = 0;
 	public static final int RIGHT_SERVO_PORT = 1;
 	
 	//Pneumatics
@@ -43,14 +41,12 @@ public class RobotMap {
 	
 	//Sensors
 	//Encoders
-	public static final int CHASSIS_ENCODER_LEFT_A = 1;
-	public static final int CHASSIS_ENCODER_LEFT_B = 2;
 	public static final int CHASSIS_ENCODER_RIGHT_A = 3;
 	public static final int CHASSIS_ENCODER_RIGHT_B = 4;
 
 	//Limit switches
-	public static final int LIFT_LIMITED_SWITCH_PORT = 0;
-	public static final int QUEUE_SWITCH = 5;
+	public static final int LIFT_LIMITED_SWITCH_PORT = 5;
+	public static final int QUEUE_SWITCH = 0;
 	
 	//LEDs
 	public static final int LED_RELAY = 1;

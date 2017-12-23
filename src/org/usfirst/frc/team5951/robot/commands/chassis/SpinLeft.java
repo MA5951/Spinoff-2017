@@ -1,20 +1,16 @@
-package org.usfirst.frc.team5951.robot.commands.queue;
+package org.usfirst.frc.team5951.robot.commands.chassis;
 
 import org.usfirst.frc.team5951.robot.Robot;
-import org.usfirst.frc.team5951.robot.subsystems.Queue;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShootBall extends Command {
+public class SpinLeft extends Command {
 
-	private Queue queue;
-	
-    public ShootBall() {
-    	this.queue = Robot.QUEUE;
-    	requires(queue);
+    public SpinLeft() {
+        requires(Robot.CHASSIS);
     }
 
     // Called just before this Command runs the first time
@@ -23,23 +19,20 @@ public class ShootBall extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	this.queue.insertBalls();
+    	Robot.CHASSIS.spinLeft();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//        return this.queue.isSwitchPressed();
-    	return false;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	this.queue.stopQueue();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	this.end();
     }
 }

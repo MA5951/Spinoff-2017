@@ -5,7 +5,6 @@ import org.usfirst.frc.team5951.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,8 +16,8 @@ public class GearsIntake extends Subsystem {
 
 	private CANTalon intakeMotor;
 
-	public static final int MAX_TALON_POWER = 1;
-	public static final int MIN_TALON_POWER = -1;
+	public static final int INTAKE_SPEED = 1;
+	public static final int OUTTAKE_SPEED = -1;
 
 	/**
 	 * 
@@ -28,7 +27,7 @@ public class GearsIntake extends Subsystem {
 		// init the CANTalon
 		intakeMotor = new CANTalon(RobotMap.GEARS_INTAKE_TALON);
 		intakeMotor.changeControlMode(TalonControlMode.PercentVbus);
-
+		intakeMotor.setInverted(true);
 	}
 
 
@@ -36,14 +35,14 @@ public class GearsIntake extends Subsystem {
 	 * Sets the CANTalon value forward. This function intakes the gears.
 	 */
 	public void intake() {
-		intakeMotor.set(MAX_TALON_POWER);
+		intakeMotor.set(INTAKE_SPEED);
 	}
 
 	/**
 	 * Sets the CANTalon value backwards. This function outtakes the gears.
 	 */
 	public void outtake() {
-		intakeMotor.set(MIN_TALON_POWER);
+		intakeMotor.set(OUTTAKE_SPEED);
 	}
 
 	/**

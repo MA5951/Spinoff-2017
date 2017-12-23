@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RemoveBall extends Command {
+public class InsertBall extends Command {
 
 	private Queue queue;
 	
-    public RemoveBall() {
+    public InsertBall() {
     	this.queue = Robot.QUEUE;
     	requires(queue);
     }
@@ -23,12 +23,12 @@ public class RemoveBall extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	this.queue.removeBalls();
+    	this.queue.insertBalls();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !this.queue.isSwitchPressed();
     }
 
     // Called once after isFinished returns true
@@ -39,6 +39,6 @@ public class RemoveBall extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	this.end();
     }
 }

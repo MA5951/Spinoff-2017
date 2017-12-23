@@ -1,10 +1,8 @@
 package org.usfirst.frc.team5951.robot.commands.lift;
 
-import org.usfirst.frc.team5951.robot.OI;
 import org.usfirst.frc.team5951.robot.Robot;
 import org.usfirst.frc.team5951.robot.subsystems.Lift;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

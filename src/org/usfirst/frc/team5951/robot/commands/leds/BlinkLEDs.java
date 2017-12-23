@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class BlinkLEDs extends CommandGroup {
 	
     public BlinkLEDs() {
+    	this.setInterruptible(false);
     	this.addSequential(new EnableLEDs());
     	this.addSequential(new WaitCommand(0.15));
     	this.addParallel(new DisableLEDs());
